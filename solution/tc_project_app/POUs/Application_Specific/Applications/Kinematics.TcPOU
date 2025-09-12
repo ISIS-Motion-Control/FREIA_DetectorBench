@@ -31,6 +31,8 @@ VAR
     kinematicThreshold : LREAL := 0.25;
 	
 	fEncoderScaler : LREAL:= 100000;
+    
+    runLogic : BOOL := FALSE;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -55,7 +57,9 @@ Need some state machine logic to deal with only allowing valid kinematic positio
 Need logic for loading in constant adjustments and moving accordingly (avoiding the inter situation of crap loads of virtual axes)
 *)
 CheckThreshold();
-
+IF NOT runLogic THEN
+    RETURN;
+END_IF
 CASE runState OF
 	E_KinematicState.startup:
 		LoadPersistent(); //Reload constants from retained memory
@@ -340,90 +344,5 @@ GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stSpg.Position:= GVL.astAxes[GVL
 GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stSpg.Velocity:= GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_VIRTUAL_ENCODER].Axis.NcToPlc.ActVelo;]]></ST>
       </Implementation>
     </Action>
-    <LineIds Name="Kinematics">
-      <LineId Id="1" Count="64" />
-      <LineId Id="170" Count="1" />
-      <LineId Id="66" Count="8" />
-      <LineId Id="192" Count="1" />
-      <LineId Id="195" Count="1" />
-      <LineId Id="194" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="197" Count="0" />
-      <LineId Id="200" Count="1" />
-      <LineId Id="199" Count="0" />
-      <LineId Id="202" Count="2" />
-      <LineId Id="206" Count="0" />
-      <LineId Id="208" Count="1" />
-      <LineId Id="211" Count="1" />
-      <LineId Id="210" Count="0" />
-      <LineId Id="213" Count="0" />
-      <LineId Id="215" Count="1" />
-      <LineId Id="214" Count="0" />
-      <LineId Id="217" Count="0" />
-      <LineId Id="219" Count="4" />
-      <LineId Id="218" Count="0" />
-      <LineId Id="224" Count="3" />
-      <LineId Id="229" Count="1" />
-      <LineId Id="228" Count="0" />
-      <LineId Id="198" Count="0" />
-      <LineId Id="76" Count="10" />
-      <LineId Id="174" Count="0" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="180" Count="5" />
-      <LineId Id="89" Count="8" />
-      <LineId Id="186" Count="0" />
-      <LineId Id="98" Count="1" />
-      <LineId Id="188" Count="2" />
-      <LineId Id="187" Count="0" />
-      <LineId Id="100" Count="32" />
-      <LineId Id="172" Count="0" />
-      <LineId Id="133" Count="5" />
-    </LineIds>
-    <LineIds Name="Kinematics.CalculateConstants">
-      <LineId Id="1" Count="1" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="5" Count="1" />
-    </LineIds>
-    <LineIds Name="Kinematics.CalculateControlPositions">
-      <LineId Id="1" Count="4" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="6" Count="8" />
-    </LineIds>
-    <LineIds Name="Kinematics.CheckErrorState">
-      <LineId Id="1" Count="5" />
-    </LineIds>
-    <LineIds Name="Kinematics.CheckThreshold">
-      <LineId Id="1" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="10" Count="4" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="16" Count="4" />
-      <LineId Id="15" Count="0" />
-    </LineIds>
-    <LineIds Name="Kinematics.FeedGenerators">
-      <LineId Id="1" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="9" Count="1" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="Kinematics.LoadPersistent">
-      <LineId Id="1" Count="3" />
-    </LineIds>
-    <LineIds Name="Kinematics.SavePersistent">
-      <LineId Id="1" Count="6" />
-    </LineIds>
-    <LineIds Name="Kinematics.SetEncoders">
-      <LineId Id="1" Count="17" />
-    </LineIds>
   </POU>
 </TcPlcObject>

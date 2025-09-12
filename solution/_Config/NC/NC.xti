@@ -16,13 +16,18 @@
 		<SvbTask Priority="8" CycleTime="100000" AmsPort="511">
 			<Name>NC-Task 1 SVB</Name>
 		</SvbTask>
-		<Axis File="Measurement Angle.xti" Id="1"/>
+		<AxisFolder Name="REAL"/>
 		<Axis File="Height.xti" Id="2"/>
-		<Axis File="Horizontal.xti" Id="3"/>
 		<Axis File="Rotation Linear Real.xti" Id="5"/>
+		<Axis File="Horizontal.xti" Id="3"/>
+		<Axis File="Measurement Angle.xti" Id="1"/>
 		<Axis File="Rotation Linear Virtual Encoder.xti" Id="6"/>
 		<Axis File="Rotation Virtual.xti" Id="4"/>
 		<Axis File="Horizontal Virtual.xti" Id="8"/>
 		<Axis File="Height Virtual.xti" Id="7"/>
+		<Axis File="Axis 9.xti" Id="9"/>
+		<Axis File="Axis 10.xti" Id="10"/>
+		<Axis File="Axis 11.xti" Id="11"/>
+		<Axis File="Axis 12.xti" Id="12"/>
 	</NC>
 </TcSmItem>
