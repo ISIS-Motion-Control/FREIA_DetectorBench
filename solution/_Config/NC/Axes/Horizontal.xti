@@ -1409,7 +1409,7 @@ External Setpoint Generation:
 	<Axis Id="3" CreateSymbols="true" AxisType="1" AxisFolder="REAL" GroupId="5">
 		<Name>__FILENAME__</Name>
 		<AxisPara>
-			<Dynamic AccelerationMaximum="600" DecelerationMaximum="600" Acceleration="600" Deceleration="600"/>
+			<Dynamic AccelerationMaximum="600" DecelerationMaximum="600" Acceleration="200" Deceleration="200" Jerk="800"/>
 			<Velo SlowManual="1" FastManual="2.5" Maximum="10"/>
 			<OtherSettings AllowMotionCmdToSlave="true"/>
 		</AxisPara>
@@ -1547,7 +1547,7 @@ External Setpoint Generation:
 		</Drive>
 		<Controller Name="Ctrl" CtrType="1">
 			<CtrPara PriorControlFactor="1">
-				<PID PosKp="4"/>
+				<PID PosKp="2"/>
 				<Observer BandWidth="20"/>
 			</CtrPara>
 		</Controller>

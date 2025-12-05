@@ -800,32 +800,32 @@
                   <Data type="int8" unitSiNumerator="second">3</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>PowerManagement_DelayTimeAfterPowerUp</Name>
                   <Data type="real64" unitSiNumerator="second">0.7</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>RelativePositonData_LengthPerSignalPeriod</Name>
                   <Data type="real64" unitPrefix="-9" unitSiNumerator="metre">20000</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>AbsolutePositionData_ResolutionSinglePos</Name>
                   <Data type="int16">32</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>AbsolutePositionData_NumberOfClockCyclesForSinglePos</Name>
                   <Data type="int16">32</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>AbsolutePositionData_LinearResolution_Numerator</Name>
                   <Data type="real64" unitPrefix="-9" unitSiNumerator="metre">50</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>AbsolutePositionData_LinearResolution_Denominator</Name>
                   <Data type="real64">1</Data>
                 </Parameter>
@@ -835,22 +835,22 @@
                   <Data type="real64">1</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>AbsolutePositionData_SensorMode_CrcPolynomial</Name>
                   <Data type="real64">67</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>AbsolutePositionData_SensorMode_InvertedCrc</Name>
                   <Data type="real64">1</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>AbsolutePositionData_SensorMode_MaxClockSpeed</Name>
                   <Data type="real64" unitSiNumerator="hertz">10000000</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033" />
+                  <Comment LcId="1033"></Comment>
                   <Name>AbsolutePositionData_MaxPositionCalculationTime</Name>
                   <Data type="real64" unitPrefix="-6" unitSiNumerator="second">20</Data>
                 </Parameter>
@@ -1384,11 +1384,11 @@
               <DatabaseType>
                 <SchemaVersion>1.26</SchemaVersion>
                 <DataVersion>1.26.0</DataVersion>
-                <OrderCode>AM8061-1G01-0000</OrderCode>
+                <OrderCode>AM8061-1G00-0000</OrderCode>
                 <GroupType>AM806x</GroupType>
-                <ElectricMotorType>AM8061-xGx1</ElectricMotorType>
+                <ElectricMotorType>AM8061-xGx0</ElectricMotorType>
                 <MotorfeedbackType>Tyco#V23401-S1001-B1</MotorfeedbackType>
-                <MotorbrakeType>AM8061-xGx1-brake</MotorbrakeType>
+                <MotorbrakeType />
                 <AssemblyType>AM8Resolver</AssemblyType>
                 <VendorName>BECKHOFF</VendorName>
                 <IsAc>true</IsAc>
@@ -1405,7 +1405,7 @@
                 <Parameter>
                   <Comment LcId="1033">Electric motor type</Comment>
                   <Name>ElecType</Name>
-                  <Data type="visibleString">AM8061-xGx1</Data>
+                  <Data type="visibleString">AM8061-xGx0</Data>
                 </Parameter>
                 <Parameter>
                   <Comment LcId="1033">Motor construction</Comment>
@@ -1546,52 +1546,7 @@
                 <Parameter>
                   <Comment LcId="1033">J motor with brake</Comment>
                   <Name>J</Name>
-                  <Data type="real64" unitSiNumerator="224">0.00136</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Motor brake type</Comment>
-                  <Name>BrakeType</Name>
-                  <Data type="real64">1</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Min motor brake voltage</Comment>
-                  <Name>UBrakeMin</Name>
-                  <Data type="real64" unitSiNumerator="38">21.6</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Max motor brake voltage</Comment>
-                  <Name>UBrakeMax</Name>
-                  <Data type="real64" unitSiNumerator="38">25.4</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Min motor brake current for brake monitoring</Comment>
-                  <Name>IBrakeMin</Name>
-                  <Data type="real64" unitSiNumerator="4">0.576</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Brake holding torque</Comment>
-                  <Name>MBrake</Name>
-                  <Data type="real64" unitSiNumerator="86">20</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Motor brake: T on</Comment>
-                  <Name>TBrakeOn</Name>
-                  <Data type="real64" unitSiNumerator="3">0.14</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Motor brake: T off</Comment>
-                  <Name>TBrakeOff</Name>
-                  <Data type="real64" unitSiNumerator="3">0.04</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Motor brake: reduced holding current</Comment>
-                  <Name>IBrakeRed</Name>
-                  <Data type="real64" unitSiNumerator="4">0.54</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">Motor brake: Time to reduce holding current</Comment>
-                  <Name>TBrakeRed</Name>
-                  <Data type="real64" unitSiNumerator="3">3</Data>
+                  <Data type="real64" unitSiNumerator="224">0.00113</Data>
                 </Parameter>
                 <Parameter>
                   <Comment LcId="1033">Commutation position offset (W+/V-)</Comment>
@@ -1715,7 +1670,7 @@
                     <IDN>32821</IDN>
                     <Elements>64</Elements>
                     <Attribute>0</Attribute>
-                    <Data>0C001E00414D383036312D7847783100</Data>
+                    <Data>0C001E00414D383036312D7847783000</Data>
                   </InitCmd>
                   <InitCmd>
                     <Transition>PS</Transition>
@@ -1877,7 +1832,7 @@
                     <IDN>100</IDN>
                     <Elements>64</Elements>
                     <Attribute>0</Attribute>
-                    <Data>7E010000</Data>
+                    <Data>3E010000</Data>
                   </InitCmd>
                   <InitCmd>
                     <Transition>PS</Transition>
@@ -1916,102 +1871,6 @@
                 </SoE>
               </Calc>
             </Motor>
-            <Feedback DataSource="1">
-              <DatabaseType>
-                <OrderCode>Tyco#V23401-S1001-B1</OrderCode>
-                <IsRotary>true</IsRotary>
-                <AbsolutePosInterface>8</AbsolutePosInterface>
-                <GroupType>Tyco#2p8kHzResolver</GroupType>
-                <ElectricFeedbackType>Resolver_p=2_f=8kHz_n=0.5_phi=9deg</ElectricFeedbackType>
-              </DatabaseType>
-              <DatabaseParameters>
-                <Parameter>
-                  <Comment LcId="1033">cf: AbsolutePositionInterfaceType 0: No interface 1: BiSS B 2: EnDat2.1 3: EnDat2.2 4: Hiperface 5: BiSS C 6: BiSS C 7: Hiperface DSL 8: Resolver 9: MES 10: SSI binary 11: SSI gray 12: EnDat3.0 100: Electrical analog commutation channel: sin(x) and sin(x-120) 102: Mechanical analog commutation channel: cos and sin 103: Electrical analog commutation channel: cos and sin</Comment>
-                  <Name>AbsolutePositionInterface</Name>
-                  <Data type="int8">8</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">cf: KindType 0: rotary 1: linear</Comment>
-                  <Name>Kind</Name>
-                  <Data type="int8">0</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">cf. PowerSupplyType 0: No voltage 1: 11 V without sense 2: 5 V with sense 3: 5 V without sense 4: 3.5 V ~ 14 V</Comment>
-                  <Name>PowerManagement_PowerSupply</Name>
-                  <Data type="int8" unitSiNumerator="second">0</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033"></Comment>
-                  <Name>AbsolutePositionData_Resolver_NumberOfPoles</Name>
-                  <Data type="int32">2</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033"></Comment>
-                  <Name>AbsolutePositionData_Resolver_ExcitationFrequency</Name>
-                  <Data type="real64" unitSiNumerator="hertz">8000</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033"></Comment>
-                  <Name>AbsolutePositionData_Resolver_TransformationRatio</Name>
-                  <Data type="real64">0.5</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033"></Comment>
-                  <Name>AbsolutePositionData_Resolver_PhaseShift</Name>
-                  <Data type="real64" unitSiNumerator="degreeangle">9</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">maximal allowed continuous speed</Comment>
-                  <Name>MaxContinousOperationSpeed</Name>
-                  <Data type="real64" unitSiNumerator="revolutionsminuterpm">9960</Data>
-                </Parameter>
-                <Parameter>
-                  <Comment LcId="1033">maximal  allowed temperature</Comment>
-                  <Name>MaxTemperature</Name>
-                  <Data type="real64" unitSiNumerator="degreeCelsius">155</Data>
-                </Parameter>
-              </DatabaseParameters>
-              <FeedbackUse>Commutation</FeedbackUse>
-              <Calc>
-                <SoE>
-                  <InitCmd>
-                    <Transition>PS</Transition>
-                    <Comment>Feedback 1 type</Comment>
-                    <Timeout>0</Timeout>
-                    <OpCode>3</OpCode>
-                    <DriveNo>1</DriveNo>
-                    <IDN>32918</IDN>
-                    <Elements>64</Elements>
-                    <Attribute>0</Attribute>
-                    <Data>E000E000110000005479636F235632333430312D53313030312D4231000000000000000000000000000000000000000000000000060000000000000003000600000000000300020832008403102700007E04EE02F401E80300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000A6004A019B0000000000000000000000000000000000000000000000</Data>
-                    <SubItemPath>arFeedbackTypeStr</SubItemPath>
-                    <SubItemPath>eManufacturer</SubItemPath>
-                    <SubItemPath>eFbDirection</SubItemPath>
-                    <SubItemPath>eType</SubItemPath>
-                    <SubItemPath>eFeedbackUse</SubItemPath>
-                    <SubItemPath>stPowerManagement.eControlVoltage</SubItemPath>
-                    <SubItemPath>stPowerManagement.eConnector</SubItemPath>
-                    <SubItemPath>stProcessCh.eProcessInterface</SubItemPath>
-                    <SubItemPath>stProcessCh.eConnector</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.stControl.bEnablePhaseAdjustment</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.stControl.bEnableOffsetAdjustment</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.nNumberOfPoles</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.nExcitationFreq</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.nTransformationRatio_100</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.nPhaseShift</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.nSinCosAmplitudeCorrection_10000</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.stObserver.nBandWidth_Hz</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.stObserver.nCorrFactorIqToAcc</SubItemPath>
-                    <SubItemPath>stParaCh.eParaInterface</SubItemPath>
-                    <SubItemPath>stLimits.nFrequencyLimit_U_s</SubItemPath>
-                    <SubItemPath>stLimits.nContinuousMechanicalFrequencyLimit_U_s</SubItemPath>
-                    <SubItemPath>stLimits.nMaxTemperature_C</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.stAmplitudeMonitoring.nMaxLimit</SubItemPath>
-                    <SubItemPath>stProcessCh.uData.stResolver.stAmplitudeMonitoring.nMinLimit</SubItemPath>
-                  </InitCmd>
-                </SoE>
-              </Calc>
-            </Feedback>
             <Feedback DataSource="1">
               <DatabaseType>
                 <OrderCode>Reni#RA26Bxx052-5V-BiSS_C</OrderCode>
@@ -2157,55 +2016,102 @@
                 </SoE>
               </Calc>
             </Feedback>
-            <Brake>
+            <Feedback DataSource="1">
               <DatabaseType>
-                <OrderCode>AM8061-xGx1-brake</OrderCode>
-                <MountedMotorOrderCode>AM8061-1G01-0000</MountedMotorOrderCode>
-                <BrakeType>HoldingBrake</BrakeType>
+                <OrderCode>Tyco#V23401-S1001-B1</OrderCode>
+                <IsRotary>true</IsRotary>
+                <AbsolutePosInterface>8</AbsolutePosInterface>
+                <GroupType>Tyco#2p8kHzResolver</GroupType>
+                <ElectricFeedbackType>Resolver_p=2_f=8kHz_n=0.5_phi=9deg</ElectricFeedbackType>
               </DatabaseType>
               <DatabaseParameters>
                 <Parameter>
-                  <Comment LcId="1033">Motor brake type</Comment>
-                  <Name>BrakeType</Name>
-                  <Data type="real64">1</Data>
+                  <Comment LcId="1033">cf: AbsolutePositionInterfaceType 0: No interface 1: BiSS B 2: EnDat2.1 3: EnDat2.2 4: Hiperface 5: BiSS C 6: BiSS C 7: Hiperface DSL 8: Resolver 9: MES 10: SSI binary 11: SSI gray 12: EnDat3.0 100: Electrical analog commutation channel: sin(x) and sin(x-120) 102: Mechanical analog commutation channel: cos and sin 103: Electrical analog commutation channel: cos and sin</Comment>
+                  <Name>AbsolutePositionInterface</Name>
+                  <Data type="int8">8</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033">Min motor brake voltage</Comment>
-                  <Name>UBrakeMin</Name>
-                  <Data type="real64" unitSiNumerator="38">21.6</Data>
+                  <Comment LcId="1033">cf: KindType 0: rotary 1: linear</Comment>
+                  <Name>Kind</Name>
+                  <Data type="int8">0</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033">Max motor brake voltage</Comment>
-                  <Name>UBrakeMax</Name>
-                  <Data type="real64" unitSiNumerator="38">25.4</Data>
+                  <Comment LcId="1033">cf. PowerSupplyType 0: No voltage 1: 11 V without sense 2: 5 V with sense 3: 5 V without sense 4: 3.5 V ~ 14 V</Comment>
+                  <Name>PowerManagement_PowerSupply</Name>
+                  <Data type="int8" unitSiNumerator="second">0</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033">Min motor brake current for brake monitoring</Comment>
-                  <Name>IBrakeMin</Name>
-                  <Data type="real64" unitSiNumerator="4">0.576</Data>
+                  <Comment LcId="1033" />
+                  <Name>AbsolutePositionData_Resolver_NumberOfPoles</Name>
+                  <Data type="int32">2</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033">Brake holding torque</Comment>
-                  <Name>MBrake</Name>
-                  <Data type="real64" unitSiNumerator="86">20</Data>
+                  <Comment LcId="1033" />
+                  <Name>AbsolutePositionData_Resolver_ExcitationFrequency</Name>
+                  <Data type="real64" unitSiNumerator="hertz">8000</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033">Motor brake: T on</Comment>
-                  <Name>TBrakeOn</Name>
-                  <Data type="real64" unitSiNumerator="3">0.14</Data>
+                  <Comment LcId="1033" />
+                  <Name>AbsolutePositionData_Resolver_TransformationRatio</Name>
+                  <Data type="real64">0.5</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033">Motor brake: T off</Comment>
-                  <Name>TBrakeOff</Name>
-                  <Data type="real64" unitSiNumerator="3">0.04</Data>
+                  <Comment LcId="1033" />
+                  <Name>AbsolutePositionData_Resolver_PhaseShift</Name>
+                  <Data type="real64" unitSiNumerator="degreeangle">9</Data>
                 </Parameter>
                 <Parameter>
-                  <Comment LcId="1033">Motor brake: Time to reduce holding current</Comment>
-                  <Name>TBrakeRed</Name>
-                  <Data type="real64" unitSiNumerator="3">3</Data>
+                  <Comment LcId="1033">maximal allowed continuous speed</Comment>
+                  <Name>MaxContinousOperationSpeed</Name>
+                  <Data type="real64" unitSiNumerator="revolutionsminuterpm">9960</Data>
+                </Parameter>
+                <Parameter>
+                  <Comment LcId="1033">maximal  allowed temperature</Comment>
+                  <Name>MaxTemperature</Name>
+                  <Data type="real64" unitSiNumerator="degreeCelsius">155</Data>
                 </Parameter>
               </DatabaseParameters>
-            </Brake>
+              <FeedbackUse>Commutation</FeedbackUse>
+              <Calc>
+                <SoE>
+                  <InitCmd>
+                    <Transition>PS</Transition>
+                    <Comment>Feedback 1 type</Comment>
+                    <Timeout>0</Timeout>
+                    <OpCode>3</OpCode>
+                    <DriveNo>1</DriveNo>
+                    <IDN>32918</IDN>
+                    <Elements>64</Elements>
+                    <Attribute>0</Attribute>
+                    <Data>E000E000110000005479636F235632333430312D53313030312D4231000000000000000000000000000000000000000000000000060000000000000003000600000000000300020832008403102700007E04EE02F401E80300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000A6004A019B0000000000000000000000000000000000000000000000</Data>
+                    <SubItemPath>arFeedbackTypeStr</SubItemPath>
+                    <SubItemPath>eManufacturer</SubItemPath>
+                    <SubItemPath>eFbDirection</SubItemPath>
+                    <SubItemPath>eType</SubItemPath>
+                    <SubItemPath>eFeedbackUse</SubItemPath>
+                    <SubItemPath>stPowerManagement.eControlVoltage</SubItemPath>
+                    <SubItemPath>stPowerManagement.eConnector</SubItemPath>
+                    <SubItemPath>stProcessCh.eProcessInterface</SubItemPath>
+                    <SubItemPath>stProcessCh.eConnector</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.stControl.bEnablePhaseAdjustment</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.stControl.bEnableOffsetAdjustment</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.nNumberOfPoles</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.nExcitationFreq</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.nTransformationRatio_100</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.nPhaseShift</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.nSinCosAmplitudeCorrection_10000</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.stObserver.nBandWidth_Hz</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.stObserver.nCorrFactorIqToAcc</SubItemPath>
+                    <SubItemPath>stParaCh.eParaInterface</SubItemPath>
+                    <SubItemPath>stLimits.nFrequencyLimit_U_s</SubItemPath>
+                    <SubItemPath>stLimits.nContinuousMechanicalFrequencyLimit_U_s</SubItemPath>
+                    <SubItemPath>stLimits.nMaxTemperature_C</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.stAmplitudeMonitoring.nMaxLimit</SubItemPath>
+                    <SubItemPath>stProcessCh.uData.stResolver.stAmplitudeMonitoring.nMinLimit</SubItemPath>
+                  </InitCmd>
+                </SoE>
+              </Calc>
+            </Feedback>
             <Load MoveStyle="Linear">
               <IsMotorRotary>true</IsMotorRotary>
               <Name>InverterChannelTypeBlockLoad</Name>
@@ -2557,7 +2463,7 @@
       <ProcessData>
         <Send>
           <BitStart>832</BitStart>
-          <BitLength>96</BitLength>
+          <BitLength>128</BitLength>
         </Send>
         <Recv>
           <BitStart>832</BitStart>
@@ -2786,6 +2692,21 @@
               <Length>4</Length>
             </AdsInfo>
           </Entry>
+          <Entry>
+            <Index>#x24</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>32</BitLen>
+            <Name>Velocity command value</Name>
+            <DataType>DINT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2130706316</IndexOffset>
+              <Length>4</Length>
+            </AdsInfo>
+          </Entry>
         </RxPdo>
       </ProcessData>
       <Mailbox DataLinkLayer="true">
@@ -2880,7 +2801,7 @@
               <IDN>24</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>020002002f00</Data>
+              <Data>040004002f002400</Data>
             </InitCmd>
             <InitCmd>
               <Transition>IP</Transition>
@@ -3005,17 +2926,6 @@
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
-              <Comment><![CDATA[Configured channel current]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32861</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>a00f0000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
               <Comment><![CDATA[Digital output control word]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
@@ -3068,424 +2978,6 @@
               <Elements>64</Elements>
               <Attribute>0</Attribute>
               <Data>2e22</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Configured motor type]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32821</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0c001e00414d383036312d7847783100</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Number of pole pairs]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32819</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0500</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Mechanical motor data]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32839</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>080008005005000000000000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Electrical commutation offset]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32825</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>7869</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor continuous stall current]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>111</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>a00f0000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor rated current]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>196</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>3c0f0000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor peak current]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>109</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>4c360000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor rated voltage]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32845</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>a00f</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor winding: Dielectric strength]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32835</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>c422</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Electric motor model]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32834</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>08000800bc020000fa140000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor warning temperature]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>201</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>b004</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor shut down temperature]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>204</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>7805</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor EMF]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32823</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>b608</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Thermal motor model]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32830</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>100010003408500064000100c500190000000000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor peak torque]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32841</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>7e0e0000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor inductance characteristic]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32843</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>500050006e050000dc0a00004a100000b8150000261b000094200000022600005c2b0000d43000004c360000781400004c130000ca1200009e110000820f0000b80b00009c09000048080000f4060000a0050000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor torque/force characteristic]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32842</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>500050006e050000dc0a00004a100000b8150000261b000094200000022600005c2b0000d43000004c36000006020000e8030000b405000058070000d40800003c0a00007c0b00009e0c0000a20d00007e0e0000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor temperature sensor characteristic]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32844</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>2800280070fe65ff5a004f01440239032e042805180612076701b80116028202fa0280031304b40461051806</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor brake]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32828</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0100</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Drive on delay time]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>206</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>1801</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Drive off delay time]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>207</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>5000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor brake current monitoring level]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32827</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>4002</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor brake data]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32840</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>06000600d00700000000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor continuous stall torque]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32838</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>00050000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Maximum motor speed]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>113</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>70170000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Bipolar velocity limit value]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>91</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>e17a1406</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor construction type]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32818</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor data constraints]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32857</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>240024002683000000000000401f0000000000000000000000000000000000000000000000000000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Configured drive type]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32822</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>10001e004158353230362d303030302d23232323</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Configured channel peak current]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32860</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>401f0000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Current controller settings 2]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>33219</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Current loop proportional gain 1]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>106</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>4b06</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Current control loop integral action time 1]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>107</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0800</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Velocity filter 1: Low pass time constant]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>33279</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>9600</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Velocity loop proportional gain]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>100</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>7e010000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Velocity loop integral action time]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>101</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>5000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Feedback 1 type]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32918</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>e000e000110000005479636f235632333430312d53313030312d4231000000000000000000000000000000000000000000000000060000000000000003000600000000000300020832008403102700007e04ee02f401e80300000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a6004a019b0000000000000000000000000000000000000000000000</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
-              <Comment><![CDATA[Motor temperature sensor type]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>1</DriveNo>
-              <IDN>32829</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0300</Data>
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
@@ -4015,6 +3507,402 @@
               <Attribute>0</Attribute>
               <Data>01000000</Data>
             </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Position offset control]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>33043</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0200</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Configured motor type]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32821</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0c001e00414d383036312d7847783000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Number of pole pairs]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32819</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0500</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Mechanical motor data]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32839</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>080008006a04000000000000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Electrical commutation offset]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32825</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>7869</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor continuous stall current]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>111</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>a00f0000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor rated current]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>196</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>3c0f0000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor peak current]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>109</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>4c360000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor rated voltage]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32845</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>a00f</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor winding: Dielectric strength]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32835</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>c422</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Electric motor model]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32834</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>08000800bc020000fa140000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor warning temperature]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>201</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>b004</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor shut down temperature]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>204</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>7805</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor EMF]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32823</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>b608</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Thermal motor model]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32830</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>100010003408500064000100c500190000000000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor peak torque]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32841</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>7e0e0000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor inductance characteristic]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32843</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>500050006e050000dc0a00004a100000b8150000261b000094200000022600005c2b0000d43000004c360000781400004c130000ca1200009e110000820f0000b80b00009c09000048080000f4060000a0050000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor torque/force characteristic]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32842</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>500050006e050000dc0a00004a100000b8150000261b000094200000022600005c2b0000d43000004c36000006020000e8030000b405000058070000d40800003c0a00007c0b00009e0c0000a20d00007e0e0000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor temperature sensor characteristic]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32844</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>2800280070fe65ff5a004f01440239032e042805180612076701b80116028202fa0280031304b40461051806</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor continuous stall torque]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32838</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>00050000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Maximum motor speed]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>113</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>70170000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Bipolar velocity limit value]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>91</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>e17a1406</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor construction type]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32818</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor data constraints]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32857</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>240024002683000000000000401f0000000000000000000000000000000000000000000000000000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Configured drive type]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32822</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>10001e004158353230362d303030302d23232323</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Configured channel current]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32861</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>a00f0000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Configured channel peak current]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32860</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>401f0000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Current controller settings 2]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>33219</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Current loop proportional gain 1]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>106</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>4b06</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Current control loop integral action time 1]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>107</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0800</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Velocity filter 1: Low pass time constant]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>33279</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>9600</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Velocity loop proportional gain]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>100</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>3e010000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Velocity loop integral action time]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>101</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>5000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Feedback 1 type]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32918</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>e000e000110000005479636f235632333430312d53313030312d4231000000000000000000000000000000000000000000000000060000000000000003000600000000000300020832008403102700007e04ee02f401e80300000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a6004a019b0000000000000000000000000000000000000000000000</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Motor temperature sensor type]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>32829</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0300</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Position offset control]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>33043</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0200</Data>
+            </InitCmd>
           </InitCmds>
         </SoE>
       </Mailbox>
@@ -4366,7 +4254,7 @@
           <Cmd>5</Cmd>
           <Adp>1022</Adp>
           <Ado>2064</Ado>
-          <Data>00100c0024000100</Data>
+          <Data>0010100024000100</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -4386,7 +4274,7 @@
           <Cmd>5</Cmd>
           <Adp>1022</Adp>
           <Ado>1536</Ado>
-          <Data>200000010c0000070010000201000000</Data>
+          <Data>20000001100000070010000201000000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>

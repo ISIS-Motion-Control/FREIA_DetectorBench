@@ -981,7 +981,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{FB261665-FD20-4BF2-97F8-2854C82B752D}" Name="tc_project_app" PrjFilePath="..\..\tc_project_app\tc_project_app.plcproj" TmcFilePath="..\..\tc_project_app\tc_project_app.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="tc_project_app\tc_project_app.tmc" TmcHash="{FBA39051-3B0D-D919-C7EA-F59EFA29DBC6}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="tc_project_app\tc_project_app.tmc" TmcHash="{D507B504-FA78-0E4A-88ED-ECADFECAE42D}">
 			<Name>tc_project_app Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -1413,12 +1413,12 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^MAIN.tempAXOutput" VarB="DIG Outputs^Channel 1^AX  Contactor" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 5 (EtherCAT)^Term 9 (EK1100)^Term 12 (EL1808)">
-				<Link VarA="PlcTask Inputs^GVL.astAxes[7].stInputs.bLimitBwd" VarB="Channel 2^Input" Size="1"/>
-				<Link VarA="PlcTask Inputs^GVL.astAxes[7].stInputs.bLimitFwd" VarB="Channel 1^Input" Size="1"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 5 (EtherCAT)^Term 9 (EK1100)^Term 14 (EL1808)">
 				<Link VarA="PlcTask Inputs^GVL.astAxes[4].stInputs.bLimitBwd" VarB="Channel 1^Input" Size="1"/>
 				<Link VarA="PlcTask Inputs^GVL.astAxes[4].stInputs.bLimitFwd" VarB="Channel 2^Input" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 5 (EtherCAT)^Term 9 (EK1100)^Term 14 (EL1808)">
+				<Link VarA="PlcTask Inputs^GVL.astAxes[7].stInputs.bLimitBwd" VarB="Channel 2^Input" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL.astAxes[7].stInputs.bLimitFwd" VarB="Channel 1^Input" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Height">
 				<Link VarA="PlcTask Inputs^GVL.astAxes[3].Axis.NcToPlc" VarB="Outputs^ToPlc"/>
