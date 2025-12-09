@@ -3,12 +3,19 @@
   <POU Name="Kinematics" Id="{825ca54e-117d-476c-b2c8-97d5753ab8c8}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Kinematics
 VAR
+    runLogic : BOOL := FALSE;
+    bRunDecoupled : BOOL:= FALSE;
+	bRunKinematics : BOOL:= FALSE;
+    ActuatorToFloat_Lever : LREAL; //The screw jack length we want to control
+    ActuatorToFloat_Lever_Feedback : LREAL; //virtual feedback for screw jack lenght based on rotary encoder
+	
 	TargetAngle : LREAL;
 	AllInTarget : BOOL;
 	FloatPivotOutput : ST_Coordinates;
+    FloatPivotFeedback : ST_Coordinates;
 	ActuatorToFloatOutput : ST_Coordinates;
+    ActuatorToFloatFeedback : ST_Coordinates;
 	
-	ActuatorToFloat_Lever : LREAL; //The screw jack length we want to control
 	
 	fbWritePersistentData :  WritePersistentData();
 	rTrigWritePersistent: R_TRIG();
@@ -16,8 +23,7 @@ VAR
 	runState : E_KinematicState:= E_KinematicState.startup;
     kinematicsOffDelay :TON();
 	
-	bRunDecoupled : BOOL:= FALSE;
-	bRunKinematics : BOOL:= FALSE;
+	
 	stateTransitionDelay : TON;
 	bAxisInError : BOOL := FALSE;
 	
@@ -30,10 +36,13 @@ VAR
 	iRotationLinearEncoder AT %Q* : DINT;
 	ValidKinematicPosition: BOOL;
     kinematicThreshold : LREAL := 0.25;
+    
+    fRotationToLinearCalculated : LREAL;
+    iRotationToLinearCalculated AT %Q* : DINT;
 	
 	fEncoderScaler : LREAL:= 100000;
     
-    runLogic : BOOL := FALSE;
+    
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -62,6 +71,8 @@ Need some state machine logic to deal with only allowing valid kinematic positio
 Need logic for loading in constant adjustments and moving accordingly (avoiding the inter situation of crap loads of virtual axes)
 *)
 CheckThreshold();
+CalculateConstants(); // Probably need a flag on this to say it's been updated rather than every cycle
+CalcLinearFromRotation();
 IF NOT runLogic THEN
     RETURN;
 END_IF
@@ -239,6 +250,27 @@ rTrigWritePersistent(CLK:= FALSE);
 kinematicsOffDelay.PT:= T#1s;
 kinematicsOffDelay();]]></ST>
     </Implementation>
+    <Action Name="CalcLinearFromRotation" Id="{c2603562-533b-478c-8379-31ab6ed26d09}">
+      <Implementation>
+        <ST><![CDATA[//DISTANCE bench pivot - don't need
+//KinematicConstants.BenchPivotTargetFeedback.DISTANCE:= KinematicConstants.SampleToBench_Lever*COS(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ GVL.astAxes[GVL_AxisNames.ROTATION_VIRTUAL].Axis.NcToPlc.ActPos));
+//HEIGHT bench pivot -don't need?
+//KinematicConstants.BenchPivotTargetFeedback.HEIGHT:= KinematicConstants.SampleToBench_Lever*SIN(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ GVL.astAxes[GVL_AxisNames.ROTATION_VIRTUAL].Axis.NcToPlc.ActPos));
+
+//Same
+//KinematicConstants.BenchToActuator_Angle := RAD_TO_DEG(ATAN((KinematicConstants.ActuatorPivot.HEIGHT-KinematicConstants.BenchPivot.HEIGHT)/(KinematicConstants.ActuatorPivot.DISTANCE-KinematicConstants.BenchPivot.DISTANCE)));
+
+
+
+FloatPivotFeedback.DISTANCE:= KinematicConstants.BenchToFloat_Lever*COS(DEG_TO_RAD(GVL.astAxes[GVL_AxisNames.ROTATION_VIRTUAL].Axis.NcToPlc.ActPos+KinematicConstants.BenchToFloat_Angle))+KinematicConstants.BenchPivot.DISTANCE;
+FloatPivotFeedback.HEIGHT:= KinematicConstants.BenchToFloat_Lever*SIN(DEG_TO_RAD(GVL.astAxes[GVL_AxisNames.ROTATION_VIRTUAL].Axis.NcToPlc.ActPos+KinematicConstants.BenchToFloat_Angle))+KinematicConstants.BenchPivot.HEIGHT;
+ActuatorToFloatFeedback.DISTANCE:= FloatPivotFeedback.DISTANCE - KinematicConstants.ActuatorPivot.DISTANCE;
+ActuatorToFloatFeedback.HEIGHT:= FloatPivotFeedback.HEIGHT - KinematicConstants.ActuatorPivot.HEIGHT;
+
+
+ActuatorToFloat_Lever_Feedback := SQRT(EXPT(ActuatorToFloatFeedback.DISTANCE,2)+EXPT(ActuatorToFloatFeedback.HEIGHT,2));]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="CalculateConstants" Id="{2aa10163-249e-4b7c-b25b-2f25a02d9df9}">
       <Implementation>
         <ST><![CDATA[KinematicConstants.SampleToBench_Lever:= SQRT(EXPT(KinematicConstants.BenchPivot.DISTANCE-KinematicConstants.SamplePivot.DISTANCE,2)+EXPT(KinematicConstants.BenchPivot.HEIGHT-KinematicConstants.SamplePivot.HEIGHT,2));

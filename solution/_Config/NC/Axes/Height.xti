@@ -1416,7 +1416,7 @@ External Setpoint Generation:
 			<OtherSettings AllowMotionCmdToSlave="true"/>
 		</AxisPara>
 		<Encoder Name="Enc" EncType="8">
-			<EncPara ScaleFactorNumerator="0.5" ScaleFactorDenominator="1048576" Inverse="true" MaxCount="#xffffffff" ReferenceSystem="3" EncPositionSource="1"/>
+			<EncPara ScaleFactorNumerator="0.5" ScaleFactorDenominator="1048576" Inverse="true" MaxCount="#xffffffff" ReferenceSystem="3" EncPositionSource="2"/>
 			<Vars VarGrpType="1">
 				<Name>Inputs</Name>
 				<Var>
@@ -1562,7 +1562,7 @@ External Setpoint Generation:
 				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^WcState" Size="1"/>
 				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="MDT 1^Master control word" Size="8" OffsB="8"/>
 				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="MDT 1^Position command value"/>
-				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="AT 1^Position feedback 1 value"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="AT 1^Position feedback 2 value (external feedback)"/>
 				<Link VarA="Enc^Inputs^In^nDcInputTime" VarB="InfoData^DcInputShift"/>
 				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
 				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^WcState" Size="1"/>

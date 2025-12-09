@@ -132,9 +132,9 @@ GVL.fbGetCurTaskIndex();
 //Application program calls
 //Application_Template();
 
-astAxes[Height].stControl.bEnable:= TRUE;
-astAxes[HORIZONTAL].stControl.bEnable:= TRUE;
-astAxes[ROTATION_LINEAR_REAL].stControl.bEnable:= TRUE;
+//astAxes[Height].stControl.bEnable:= TRUE;
+//astAxes[HORIZONTAL].stControl.bEnable:= TRUE;
+//astAxes[ROTATION_LINEAR_REAL].stControl.bEnable:= TRUE;
 
 
 Kinematics();]]></ST>
