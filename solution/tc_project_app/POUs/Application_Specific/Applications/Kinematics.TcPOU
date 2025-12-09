@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM Kinematics
 VAR
 	TargetAngle : LREAL;
-	
+	AllInTarget : BOOL;
 	FloatPivotOutput : ST_Coordinates;
 	ActuatorToFloatOutput : ST_Coordinates;
 	
@@ -14,6 +14,7 @@ VAR
 	rTrigWritePersistent: R_TRIG();
 	
 	runState : E_KinematicState:= E_KinematicState.startup;
+    kinematicsOffDelay :TON();
 	
 	bRunDecoupled : BOOL:= FALSE;
 	bRunKinematics : BOOL:= FALSE;
@@ -36,12 +37,16 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//Define the target angle to control
+      <ST><![CDATA[fbWritePersistentData(NETID:='',PORT:=852, START:= rTrigWritePersistent.Q, TMOUT:= T#1S);
+rTrigWritePersistent(CLK:= FALSE);
+
+//Define the target angle to control
 stateTransitionDelay(PT:= T#0.5S);
 TargetAngle := astAxes[MEASUREMENT_ANGLE].Axis.NcToPlc.SetPos;
 
 
 CalculateControlPositions();
+InTargetPosition();
 CheckErrorState();
 IF bAxisInError THEN
 	runState := E_KinematicState.error;
@@ -155,6 +160,7 @@ CASE runState OF
 		
 	E_KinematicState.runningKinematics:
 		//Ignore any move commands to individual axes
+        kinematicsOffDelay.IN:= FALSE;
 		GVL.astAxes[GVL_AxisNames.HEIGHT].stStatus.bMoveRequested:= FALSE;
 		GVL.astAxes[GVL_AxisNames.HORIZONTAL].stStatus.bMoveRequested:= FALSE;
 		GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stStatus.bMoveRequested:= FALSE;
@@ -189,10 +195,13 @@ CASE runState OF
 		END_IF
 
 	E_KinematicState.inKinematicMove:
-		IF NOT GVL.astAxes[GVL_AxisNames.MEASUREMENT_ANGLE].stStatus.bMoveInProgress THEN
-			GVL.astAxes[GVL_AxisNames.HEIGHT].stSpg.DisableSPG := TRUE;
-			GVL.astAxes[GVL_AxisNames.HORIZONTAL].stSpg.DisableSPG := TRUE;
-			GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stSpg.DisableSPG := TRUE;			
+		IF NOT GVL.astAxes[GVL_AxisNames.MEASUREMENT_ANGLE].stStatus.bMoveInProgress AND AllInTarget THEN
+            kinematicsOffDelay.IN:= TRUE;
+            IF kinematicsOffDelay.Q THEN
+			    GVL.astAxes[GVL_AxisNames.HEIGHT].stSpg.DisableSPG := TRUE;
+			    GVL.astAxes[GVL_AxisNames.HORIZONTAL].stSpg.DisableSPG := TRUE;
+			    GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stSpg.DisableSPG := TRUE;
+            END_IF		
 		END_IF
 		
 		IF NOT GVL.astAxes[GVL_AxisNames.HEIGHT].Axis.Status.ExtSetPointGenEnabled AND NOT GVL.astAxes[GVL_AxisNames.HORIZONTAL].Axis.Status.ExtSetPointGenEnabled AND NOT GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].Axis.Status.ExtSetPointGenEnabled THEN
@@ -226,7 +235,9 @@ FeedGenerators();
 
 //Cleanup
 fbWritePersistentData(NETID:='',PORT:=852, START:= rTrigWritePersistent.Q, TMOUT:= T#1S);
-rTrigWritePersistent(CLK:= FALSE);]]></ST>
+rTrigWritePersistent(CLK:= FALSE);
+kinematicsOffDelay.PT:= T#1s;
+kinematicsOffDelay();]]></ST>
     </Implementation>
     <Action Name="CalculateConstants" Id="{2aa10163-249e-4b7c-b25b-2f25a02d9df9}">
       <Implementation>
@@ -301,6 +312,23 @@ astAxes[HORIZONTAL].stSpg.Velocity:= astAxes[HORIZONTAL_VIRTUAL].Axis.NcToPlc.Ac
 astAxes[ROTATION_LINEAR_REAL].stSpg.Position:= astAxes[ROTATION_LINEAR_VIRTUAL_ENCODER].Axis.NcToPlc.ActPos;
 astAxes[ROTATION_LINEAR_REAL].stSpg.Velocity:= astAxes[ROTATION_LINEAR_VIRTUAL_ENCODER].Axis.NcToPlc.ActVelo;
 ]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="InTargetPosition" Id="{5dfa090a-7ac6-46ca-8135-9d096b952ba9}">
+      <Implementation>
+        <ST><![CDATA[AllInTarget:= FALSE;
+
+IF ABS(GVL.astAxes[GVL_AxisNames.HEIGHT].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.HEIGHT].Axis.NcToPlc.SetPos)< 0.01 THEN
+    AllInTarget:= TRUE;
+END_IF
+
+IF ABS(GVL.astAxes[GVL_AxisNames.HORIZONTAL].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.HORIZONTAL].Axis.NcToPlc.SetPos)< 0.01 THEN
+    AllInTarget:= AllInTarget AND TRUE;
+END_IF
+
+IF ABS(GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].Axis.NcToPlc.SetPos)< 0.01 THEN
+    AllInTarget:= AllInTarget AND TRUE;
+END_IF]]></ST>
       </Implementation>
     </Action>
     <Action Name="LoadPersistent" Id="{172be719-aa0d-478e-a6f0-ea23c73ba946}">

@@ -1064,7 +1064,7 @@
               </Parameter>
               <Parameter>
                 <PropertyName>MaxApplicationTorqueForce</PropertyName>
-                <Value>25.6</Value>
+                <Value>15.36</Value>
               </Parameter>
               <Parameter>
                 <PropertyName>MaxApplicationSpeed</PropertyName>
@@ -2149,7 +2149,7 @@
               </Parameter>
               <Parameter>
                 <PropertyName>MaxApplicationTorqueForce</PropertyName>
-                <Value>25.6</Value>
+                <Value>2.56</Value>
               </Parameter>
               <Parameter>
                 <PropertyName>MaxApplicationSpeed</PropertyName>
@@ -2467,7 +2467,7 @@
         </Send>
         <Recv>
           <BitStart>832</BitStart>
-          <BitLength>208</BitLength>
+          <BitLength>224</BitLength>
         </Recv>
         <Sm2>
           <Type>Outputs</Type>
@@ -2545,6 +2545,21 @@
               <Length>4</Length>
             </AdsInfo>
           </Entry>
+          <Entry>
+            <Index>#x54</Index>
+            <SubIndex>0</SubIndex>
+            <BitLen>16</BitLen>
+            <Name>Torque/force feedback value</Name>
+            <DataType>INT</DataType>
+            <AdsInfo>
+              <AmsAddress>
+                <AmsPort>11</AmsPort>
+              </AmsAddress>
+              <IndexGroup>50593872</IndexGroup>
+              <IndexOffset>-2147483534</IndexOffset>
+              <Length>2</Length>
+            </AdsInfo>
+          </Entry>
         </TxPdo>
         <TxPdo Mandatory="true" Sm="3">
           <Index>#x1010</Index>
@@ -2560,7 +2575,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483534</IndexOffset>
+              <IndexOffset>-2147483532</IndexOffset>
               <Length>2</Length>
             </AdsInfo>
           </Entry>
@@ -2575,7 +2590,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483532</IndexOffset>
+              <IndexOffset>-2147483530</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
@@ -2590,7 +2605,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483528</IndexOffset>
+              <IndexOffset>-2147483526</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
@@ -2605,7 +2620,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483524</IndexOffset>
+              <IndexOffset>-2147483522</IndexOffset>
               <Length>2</Length>
             </AdsInfo>
           </Entry>
@@ -2620,7 +2635,7 @@
                 <AmsPort>11</AmsPort>
               </AmsAddress>
               <IndexGroup>50593872</IndexGroup>
-              <IndexOffset>-2147483522</IndexOffset>
+              <IndexOffset>-2147483520</IndexOffset>
               <Length>4</Length>
             </AdsInfo>
           </Entry>
@@ -2757,7 +2772,7 @@
               <IDN>16</IDN>
               <Elements>64</Elements>
               <Attribute>0</Attribute>
-              <Data>040004003300bd00</Data>
+              <Data>060006003300bd005400</Data>
             </InitCmd>
             <InitCmd Fixed="true">
               <Transition>PS</Transition>
@@ -3509,17 +3524,6 @@
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
-              <Comment><![CDATA[Position offset control]]></Comment>
-              <Timeout>0</Timeout>
-              <OpCode>3</OpCode>
-              <DriveNo>0</DriveNo>
-              <IDN>33043</IDN>
-              <Elements>64</Elements>
-              <Attribute>0</Attribute>
-              <Data>0200</Data>
-            </InitCmd>
-            <InitCmd>
-              <Transition>PS</Transition>
               <Comment><![CDATA[Configured motor type]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
@@ -3894,6 +3898,39 @@
             </InitCmd>
             <InitCmd>
               <Transition>PS</Transition>
+              <Comment><![CDATA[Bipolar torque/force limit value]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>92</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>5802</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Bipolar torque/force limit value]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>1</DriveNo>
+              <IDN>92</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>6400</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
+              <Comment><![CDATA[Position offset control]]></Comment>
+              <Timeout>0</Timeout>
+              <OpCode>3</OpCode>
+              <DriveNo>0</DriveNo>
+              <IDN>33043</IDN>
+              <Elements>64</Elements>
+              <Attribute>0</Attribute>
+              <Data>0200</Data>
+            </InitCmd>
+            <InitCmd>
+              <Transition>PS</Transition>
               <Comment><![CDATA[Position offset control]]></Comment>
               <Timeout>0</Timeout>
               <OpCode>3</OpCode>
@@ -4264,7 +4301,7 @@
           <Cmd>5</Cmd>
           <Adp>1022</Adp>
           <Ado>2072</Ado>
-          <Data>00111a0022000100</Data>
+          <Data>00111c0022000100</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
@@ -4284,7 +4321,7 @@
           <Cmd>5</Cmd>
           <Adp>1022</Adp>
           <Ado>1552</Ado>
-          <Data>200000011a0000070011000101000000</Data>
+          <Data>200000011c0000070011000101000000</Data>
           <Cnt>1</Cnt>
           <Retries>3</Retries>
         </InitCmd>
