@@ -35,12 +35,16 @@ VAR
 	fRotationLinearEncoder: LREAL;
 	iRotationLinearEncoder AT %Q* : DINT;
 	ValidKinematicPosition: BOOL;
-    kinematicThreshold : LREAL := 0.25;
+    kinematicThreshold : LREAL := 0.2;
+    inTargetThresholdLinear : LREAL := 0.002;
+    inTargetThresholdAngle : LREAL := 0.006;
+    validTon : TON;
+    doneOverride: BOOL;
     
     fRotationToLinearCalculated : LREAL;
     iRotationToLinearCalculated AT %Q* : DINT;
 	
-	fEncoderScaler : LREAL:= 100000;
+	fEncoderScaler : LREAL:= 100000;//100000
     
     
 END_VAR
@@ -99,9 +103,13 @@ CASE runState OF
 		
 	E_KinematicState.initDecoupled:
 		GVL.astAxes[GVL_AxisNames.MEASUREMENT_ANGLE].stControl.bEnable:= FALSE;
-		GVL.astAxes[GVL_AxisNames.HEIGHT].stControl.bAutoEnableDisable:= TRUE;
-		GVL.astAxes[GVL_AxisNames.HORIZONTAL].stControl.bAutoEnableDisable:= TRUE;
-		GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stControl.bAutoEnableDisable:= TRUE;
+		GVL.astAxes[GVL_AxisNames.HEIGHT].stControl.bAutoEnableDisable:= FALSE;
+		GVL.astAxes[GVL_AxisNames.HORIZONTAL].stControl.bAutoEnableDisable:= FALSE;
+		GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stControl.bAutoEnableDisable:= FALSE;
+		
+        GVL.astAxes[GVL_AxisNames.HEIGHT].stControl.bEnable:= TRUE;
+		GVL.astAxes[GVL_AxisNames.HORIZONTAL].stControl.bEnable:= TRUE;
+		GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stControl.bEnable:= TRUE;
 		
 		stateTransitionDelay.IN := TRUE;
 		
@@ -170,6 +178,7 @@ CASE runState OF
         
 		
 	E_KinematicState.runningKinematics:
+        doneOverride:= FALSE;
 		//Ignore any move commands to individual axes
         kinematicsOffDelay.IN:= FALSE;
 		GVL.astAxes[GVL_AxisNames.HEIGHT].stStatus.bMoveRequested:= FALSE;
@@ -206,7 +215,8 @@ CASE runState OF
 		END_IF
 
 	E_KinematicState.inKinematicMove:
-		IF NOT GVL.astAxes[GVL_AxisNames.MEASUREMENT_ANGLE].stStatus.bMoveInProgress AND AllInTarget THEN
+    doneOverride:= TRUE;
+		IF NOT GVL.astAxes[GVL_AxisNames.MEASUREMENT_ANGLE].stStatus.bMoveInProgress AND validTon.Q THEN
             kinematicsOffDelay.IN:= TRUE;
             IF kinematicsOffDelay.Q THEN
 			    GVL.astAxes[GVL_AxisNames.HEIGHT].stSpg.DisableSPG := TRUE;
@@ -268,7 +278,10 @@ ActuatorToFloatFeedback.DISTANCE:= FloatPivotFeedback.DISTANCE - KinematicConsta
 ActuatorToFloatFeedback.HEIGHT:= FloatPivotFeedback.HEIGHT - KinematicConstants.ActuatorPivot.HEIGHT;
 
 
-ActuatorToFloat_Lever_Feedback := SQRT(EXPT(ActuatorToFloatFeedback.DISTANCE,2)+EXPT(ActuatorToFloatFeedback.HEIGHT,2));]]></ST>
+ActuatorToFloat_Lever_Feedback := SQRT(EXPT(ActuatorToFloatFeedback.DISTANCE,2)+EXPT(ActuatorToFloatFeedback.HEIGHT,2));
+
+iRotationToLinearCalculated:= LREAL_TO_DINT(ActuatorToFloat_Lever_Feedback * fEncoderScaler);
+//iHeightEncoder:= LREAL_TO_DINT(fHeightEncoder * fEncoderScaler);]]></ST>
       </Implementation>
     </Action>
     <Action Name="CalculateConstants" Id="{2aa10163-249e-4b7c-b25b-2f25a02d9df9}">
@@ -330,7 +343,8 @@ IF ABS(astAxes[ROTATION_LINEAR_REAL].stStatus.fActPosition - astAxes[ROTATION_LI
     ValidKinematicPosition:= ValidKinematicPosition;
 ELSE
     ValidKinematicPosition:= FALSE;
-END_IF]]></ST>
+END_IF
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="FeedGenerators" Id="{d99cc9cf-f8dc-479e-9d91-af53e7cd7c2e}">
@@ -350,17 +364,24 @@ astAxes[ROTATION_LINEAR_REAL].stSpg.Velocity:= astAxes[ROTATION_LINEAR_VIRTUAL_E
       <Implementation>
         <ST><![CDATA[AllInTarget:= FALSE;
 
-IF ABS(GVL.astAxes[GVL_AxisNames.HEIGHT].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.HEIGHT].Axis.NcToPlc.SetPos)< 0.01 THEN
+IF ABS(GVL.astAxes[GVL_AxisNames.HEIGHT].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.HEIGHT].Axis.NcToPlc.SetPos)< inTargetThresholdLinear THEN
     AllInTarget:= TRUE;
 END_IF
 
-IF ABS(GVL.astAxes[GVL_AxisNames.HORIZONTAL].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.HORIZONTAL].Axis.NcToPlc.SetPos)< 0.01 THEN
+IF ABS(GVL.astAxes[GVL_AxisNames.HORIZONTAL].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.HORIZONTAL].Axis.NcToPlc.SetPos)< inTargetThresholdLinear THEN
     AllInTarget:= AllInTarget AND TRUE;
+ELSE
+    AllInTarget:= FALSE;
 END_IF
 
-IF ABS(GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].Axis.NcToPlc.SetPos)< 0.01 THEN
+IF ABS(GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].Axis.NcToPlc.ActPos - GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].Axis.NcToPlc.SetPos)< inTargetThresholdAngle THEN
     AllInTarget:= AllInTarget AND TRUE;
-END_IF]]></ST>
+ELSE
+    AllInTarget:= FALSE;
+END_IF
+
+
+validTon(IN:= AllInTarget, PT:= T#0.4S);]]></ST>
       </Implementation>
     </Action>
     <Action Name="LoadPersistent" Id="{172be719-aa0d-478e-a6f0-ea23c73ba946}">

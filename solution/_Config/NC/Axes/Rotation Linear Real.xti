@@ -1407,15 +1407,19 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Axis Id="5" CreateSymbols="true" AxisType="1" AxisFolder="REAL" GroupId="13">
-		<Name>__FILENAME__</Name>
+		<Name>Rotation Linear Real</Name>
 		<AxisPara>
 			<Dynamic Acceleration="19.5225" Deceleration="19.5225" Jerk="58.5675"/>
 			<Velo RefSearch="0.13015" RefSync="0.13015" SlowManual="0.65075" FastManual="3.9045" Fast="13.015" Maximum="13.015"/>
-			<TargetPosControl Range="0.02"/>
+			<TargetPosControl Range="0.02" Time="0.2"/>
 			<OtherSettings AllowMotionCmdToSlave="true"/>
 		</AxisPara>
-		<Encoder Name="Enc" EncType="8">
-			<EncPara ScaleFactorNumerator="0.5" ScaleFactorDenominator="1048576" Offset="124.2303321" ModuloFactor="0.5" Inverse="true" MaxCount="#xffffffff" ReferenceSystem="1" EncPositionSource="1"/>
+		<Encoder Name="Enc" EncType="16">
+			<EncPara ScaleFactorNumerator="1" ScaleFactorDenominator="100000" ModuloFactor="0.5" MaxCount="#xffffffff" ReferenceSystem="1" EncPositionSource="1">
+				<FilterTime TVelo="0.04"/>
+				<Inc RefSoftSyncMask="#xffffffff"/>
+				<ParameterChanged>264</ParameterChanged>
+			</EncPara>
 			<Vars VarGrpType="1">
 				<Name>Inputs</Name>
 				<Var>
@@ -1473,7 +1477,7 @@ External Setpoint Generation:
 			</Vars>
 		</Encoder>
 		<Drive Name="Drive" DrvType="9">
-			<DrvPara Inverse="true" MaxCount="#xffffffff" DriveControlDWord="#x00030100">
+			<DrvPara Inverse="true" MaxCount="#xffffffff" DriveControlDWord="#x00030000">
 				<Analog VeloReferenz="14.3165" VeloScale="6" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
 				<TimeComp TaskDelayCycles="1"/>
 			</DrvPara>
@@ -1528,9 +1532,10 @@ External Setpoint Generation:
 				</Var>
 			</Vars>
 		</Drive>
-		<Controller Name="Ctrl" CtrType="1">
-			<CtrPara PriorControlFactor="1">
-				<PosDiffControl Range="0.5"/>
+		<Controller Name="Ctrl" CtrType="3">
+			<CtrPara PriorControlFactor="0.9">
+				<PosDiffControl Range="1"/>
+				<PID PosKp="25" PosTn="1" PosTv="0.1" PosIOutputLimit="0.15" AccKa="0.2" CtrlOutputLimit="1" DeadBandPosition="0.005"/>
 				<Observer BandWidth="20"/>
 			</CtrPara>
 		</Controller>
@@ -1562,7 +1567,6 @@ External Setpoint Generation:
 				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="MDT 2^Master control word" Size="8" OffsB="8"/>
 				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="MDT 2^Position command value"/>
 				<Link VarA="Drive^Outputs^Out^nDataOut2" VarB="MDT 2^Velocity command value"/>
-				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="AT 2^Position feedback 1 value"/>
 				<Link VarA="Enc^Inputs^In^nDcInputTime" VarB="InfoData^DcInputShift"/>
 				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
 				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^WcState" Size="1"/>

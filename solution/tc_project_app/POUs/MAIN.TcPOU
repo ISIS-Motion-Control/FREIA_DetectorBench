@@ -28,6 +28,9 @@ VAR
 		
     tempAXOutput AT%Q* : BOOL:= TRUE;
 	
+
+    weAreInAMove: BOOL;
+    moveFinished: BOOL;
 	
 END_VAR
 
@@ -49,7 +52,25 @@ PROG();
 AXES();
 
 
+IF Kinematics.runLogic AND Kinematics.bRunKinematics THEN
+    //We want to override the bDone signal of axis[1]
+    IF Kinematics.runState= E_KinematicState.inKinematicMove THEN
+        weAreInAMove:= TRUE;       
+	END_IF
+    IF weAreInAMove AND  Kinematics.runState<> E_KinematicState.inKinematicMove THEN
+        moveFinished:= TRUE;
+	END_IF
+    
+END_IF
 
+IF weAreInAMove THEN
+    astAxes[1].stStatus.bDone:=FALSE;
+END_IF
+IF moveFinished AND weAreInAMove THEN
+    astAxes[1].stStatus.bDone:=TRUE;
+    moveFinished:= FALSE;
+    weAreInAMove:= FALSE;
+END_IF
 ]]></ST>
     </Implementation>
     <Folder Name="POSITION_RECOVERY" Id="{3561f6ef-e145-4ed3-9839-f17334bd2d97}" />
