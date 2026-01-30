@@ -6,6 +6,11 @@ VAR
     runLogic : BOOL := FALSE;
     bRunDecoupled : BOOL:= FALSE;
 	bRunKinematics : BOOL:= FALSE;
+    bCompensateMechanics : BOOL:=FALSE;
+    compensationDistance : LREAL;
+    compensationHeight : LREAL;
+    directionIsForward : BOOL;
+    
     ActuatorToFloat_Lever : LREAL; //The screw jack length we want to control
     ActuatorToFloat_Lever_Feedback : LREAL; //virtual feedback for screw jack lenght based on rotary encoder
 	
@@ -52,7 +57,8 @@ END_VAR
     <Implementation>
       <ST><![CDATA[fbWritePersistentData(NETID:='',PORT:=852, START:= rTrigWritePersistent.Q, TMOUT:= T#1S);
 rTrigWritePersistent(CLK:= FALSE);
-
+WhichDirection();
+CalculateCompensation();
 //Define the target angle to control
 stateTransitionDelay(PT:= T#0.5S);
 TargetAngle := astAxes[MEASUREMENT_ANGLE].Axis.NcToPlc.SetPos;
@@ -284,6 +290,39 @@ iRotationToLinearCalculated:= LREAL_TO_DINT(ActuatorToFloat_Lever_Feedback * fEn
 //iHeightEncoder:= LREAL_TO_DINT(fHeightEncoder * fEncoderScaler);]]></ST>
       </Implementation>
     </Action>
+    <Action Name="CalculateCompensation" Id="{d32fa436-889c-4699-9a95-7b496a498397}">
+      <Implementation>
+        <ST><![CDATA[IF directionIsForward THEN
+    
+//y = -1E-05x3 + 0.0006x2 - 0.001x + 0.0268
+
+    compensationDistance := -(-0.00001*(EXPT(TargetAngle,3))+(0.0006*(EXPT(TargetAngle,2)))-(0.001*TargetAngle)+ 0.0268);
+
+//y = -2E-07x5 + 4E-06x4 + 1E-05x3 - 0.0004x2 - 0.0045x - 0.0031
+
+    compensationHeight:= (-0.0000002*EXPT(TargetAngle,5))
+    +(0.000004*EXPT(TargetAngle,4))
+    +(0.00001*EXPT(TargetAngle,3))
+    -(0.0004*EXPT(TargetAngle,2))
+    -(0.0045*TargetAngle)
+    -0.0031;
+    
+ELSE
+//y = -1E-05x3 + 0.0006x2 - 0.0057x + 0.0833
+
+    compensationDistance := -(-0.00001*(EXPT(TargetAngle,3))+(0.0006*(EXPT(TargetAngle,2)))-(0.0057*TargetAngle)+ 0.0833);
+
+//y = -1E-07x5 + 3E-06x4 + 1E-05x3 - 0.0003x2 - 0.0037x - 0.1316
+   
+    compensationHeight:= (-0.0000001*EXPT(TargetAngle,5))
+    +(0.000003*EXPT(TargetAngle,4))
+    +(0.00001*EXPT(TargetAngle,3))
+    -(0.0003*EXPT(TargetAngle,2))
+    -(0.0037*TargetAngle)
+    -0.1316;
+END_IF]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="CalculateConstants" Id="{2aa10163-249e-4b7c-b25b-2f25a02d9df9}">
       <Implementation>
         <ST><![CDATA[KinematicConstants.SampleToBench_Lever:= SQRT(EXPT(KinematicConstants.BenchPivot.DISTANCE-KinematicConstants.SamplePivot.DISTANCE,2)+EXPT(KinematicConstants.BenchPivot.HEIGHT-KinematicConstants.SamplePivot.HEIGHT,2));
@@ -296,8 +335,16 @@ KinematicConstants.BenchToFloat_Angle:= RAD_TO_DEG(ATAN((KinematicConstants.Floa
     </Action>
     <Action Name="CalculateControlPositions" Id="{34b9fb3d-e2ee-41d1-af5e-9f0dae2af7e6}">
       <Implementation>
-        <ST><![CDATA[KinematicConstants.BenchPivotTarget.DISTANCE:= KinematicConstants.SampleToBench_Lever*COS(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ TargetAngle));
-KinematicConstants.BenchPivotTarget.HEIGHT:= KinematicConstants.SampleToBench_Lever*SIN(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ TargetAngle));
+        <ST><![CDATA[IF bCompensateMechanics THEN
+    KinematicConstants.BenchPivotTarget.DISTANCE:= KinematicConstants.SampleToBench_Lever*COS(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ TargetAngle)) -compensationDistance;
+    KinematicConstants.BenchPivotTarget.HEIGHT:= KinematicConstants.SampleToBench_Lever*SIN(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ TargetAngle)) - compensationHeight;
+ELSE
+    KinematicConstants.BenchPivotTarget.DISTANCE:= KinematicConstants.SampleToBench_Lever*COS(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ TargetAngle));
+    KinematicConstants.BenchPivotTarget.HEIGHT:= KinematicConstants.SampleToBench_Lever*SIN(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ TargetAngle));
+END_IF
+
+//KinematicConstants.BenchPivotTarget.DISTANCE:= KinematicConstants.SampleToBench_Lever*COS(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ TargetAngle));
+//KinematicConstants.BenchPivotTarget.HEIGHT:= KinematicConstants.SampleToBench_Lever*SIN(DEG_TO_RAD( KinematicConstants.SampleToBench_Angle+ TargetAngle));
 
 
 KinematicConstants.BenchToActuator_Angle := RAD_TO_DEG(ATAN((KinematicConstants.ActuatorPivot.HEIGHT-KinematicConstants.BenchPivot.HEIGHT)/(KinematicConstants.ActuatorPivot.DISTANCE-KinematicConstants.BenchPivot.DISTANCE)));
@@ -423,6 +470,17 @@ GVL.astAxes[GVL_AxisNames.HORIZONTAL].stSpg.Velocity:= GVL.astAxes[GVL_AxisNames
 
 GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stSpg.Position:= GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_VIRTUAL_ENCODER].Axis.NcToPlc.ActPos;
 GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_REAL].stSpg.Velocity:= GVL.astAxes[GVL_AxisNames.ROTATION_LINEAR_VIRTUAL_ENCODER].Axis.NcToPlc.ActVelo;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="WhichDirection" Id="{201ad364-8855-4e57-8f2a-c919c41d2a98}">
+      <Implementation>
+        <ST><![CDATA[IF astAxes[1].Axis.Status.PositiveDirection THEN
+    directionIsForward := TRUE;
+ELSIF astAxes[1].Axis.Status.NegativeDirection THEN
+    directionIsForward := FALSE;
+ELSE
+    directionIsForward := directionIsForward;
+END_IF]]></ST>
       </Implementation>
     </Action>
   </POU>
